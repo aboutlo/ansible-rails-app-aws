@@ -1,0 +1,5 @@
+# TODO skip if bundler is already installed
+- name: Install Bundler
+  sudo: true
+  sudo_user: deploy
+  command: bash -lc "gem install bundler"

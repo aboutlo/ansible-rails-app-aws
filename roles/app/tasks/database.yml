@@ -1,0 +1,17 @@
+--- 
+- name: "Create database"
+  postgresql_db: name={{database.name}}
+                 encoding=UTF-8
+  sudo: true
+  sudo_user: postgres
+
+- name: "Create DB user"
+  postgresql_user: db={{database.name}}
+                   name={{database.username}}
+                   password={{database.password}}
+  sudo: true
+  sudo_user: postgres
+
+- name: "copy database.yml to shared directory"
+  template:  src=database.yml.j2
+             dest=/home/deploy/apps/{{app_name}}/shared/config/database.yml

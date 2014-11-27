@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  database: {{database.name}}
+  host: {{database.host}}
+  username: {{database.username}}
+  password: {{database.password}}
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  database: {{database.name}}_test
+
+vagrant:
+  <<: *default
+
+staging:
+  <<: *default
+
+production:
+  <<: *default

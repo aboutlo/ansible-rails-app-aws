@@ -1,0 +1,24 @@
+- name: delete default vhost
+  action: file path=/etc/nginx/sites-enabled/default
+               state=absent
+
+- name: "copy {{app_name}} vhost"
+  template: src=host.conf.j2
+            dest=/etc/nginx/sites-available/{{app_name}}
+
+- name: "link {{app_name}} vhost"
+  action: file dest=/etc/nginx/sites-enabled/{{app_name}}
+               src=/etc/nginx/sites-available/{{app_name}}
+               state=link
+
+- name: "Create {{app_name}} share/config"
+  action: file dest=/home/deploy/apps/{{app_name}}/shared/config
+               state=directory
+  sudo: true
+  sudo_user: deploy
+
+- name: Copy unicorn.rb to share/config
+  template: src=unicorn.rb.j2
+            dest=/home/deploy/apps/{{app_name}}/shared/config/unicorn.rb
+  notify:
+     - reload nginx

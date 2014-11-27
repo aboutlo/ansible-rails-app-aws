@@ -1,0 +1,34 @@
+---
+# set these parameters to control the region, keypair, and AMI that are launched
+ec2_region: eu-west-1
+instances_keypair: "{{app_name}}"
+image_id: ami-0307d674
+
+# Instances to launch be launched.
+# If you re-run the playbook after modifying exact_count,
+# instances will be terminated if the actual count > exact_count,
+# or new instances will be launched if actual count < exact_count.
+
+ec2_instances:
+  - instance_type: t2.micro
+    zone: "{{ ec2_region }}a"
+    image: "{{ image_id }}"
+    assign_public_ip: true
+    keypair: "{{instances_keypair}}"
+    security_groups: ['ssh','web']
+    instance_tags:
+        Name: '{{environment}}_web'
+    exact_count: 1
+    count_tag:
+        Name: '{{environment}}_web'
+
+#  - instance_type: t2.micro
+#    image: "{{ image_id }}"
+#    assign_public_ip: true
+#    keypair: "{{instances_keypair}}"
+#    group: ['ssh']
+#    instance_tags:
+#        Name: '{{environment}}_db'
+#    exact_count: 1
+#    count_tag:
+#        Name: '{{environment}}_db'

@@ -1,0 +1,31 @@
+# Basic security
+# ====================================================
+
+- name:   Update APT package cache
+  action: apt update_cache=yes
+
+- name: Configure firewall
+  ufw: rule=allow port={{ item }} proto=tcp
+  with_items:
+    - "22"
+    - "80"
+    - "443"
+    - "3000"
+    - "8080"
+
+- name: Enable ufw
+  action: shell echo 'y' | ufw enable
+
+- name: install essential packages
+  apt: pkg={{ item }} state=latest
+  sudo: true
+  with_items:
+    - build-essential
+    - git-core
+    - python-setuptools
+    - python-software-properties
+    - nodejs
+    - libpq-dev
+
+- name: Upgrade all packages
+  apt: upgrade=safe

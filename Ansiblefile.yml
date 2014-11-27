@@ -1,0 +1,8 @@
+- src: https://github.com/bennojoy/nginx
+  path: roles/
+- src: https://github.com/zzet/ansible-rbenv-role
+  path: roles/
+  name: rbenv
+- src: https://github.com/zenoamaro/ansible-postgresql
+  path: roles/
+  name: postgresql

@@ -1,0 +1,12 @@
+---
+app_name: default
+
+database:
+  name: default
+  username: "db_user"
+  password: "0987654321!"
+  host: "localhost"
+
+unicorn:
+  worker_process: 2
+  preload_app: true
