@@ -1,0 +1,4 @@
+---
+
+ssh_key_file: ~/.ssh/id_rsa.pub
+deploy_user: deploy

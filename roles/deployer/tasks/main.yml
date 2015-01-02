@@ -1,13 +1,12 @@
 - name: Add deployment user
-  action: user name=deploy
+  action: user name={{deploy_user}}
 
 - name: Add authorized deploy key
-  # TODO use ssh_key as var
-  authorized_key: user=deploy key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+  authorized_key: user={{deploy_user}} key="{{ lookup('file', ssh_key_file) }}"
 
 - name: Remove sudo group rights
   action: lineinfile dest=/etc/sudoers regexp="^%sudo" state=absent
 
 - name: Add deploy user to sudoers
-  action: lineinfile dest=/etc/sudoers regexp="deploy ALL" line="deploy ALL=(ALL) NOPASSWD:ALL" state=present
+  action: lineinfile dest=/etc/sudoers regexp="{{deploy_user}} ALL" line="{{deploy_user}} ALL=(ALL) NOPASSWD:ALL" state=present
 
