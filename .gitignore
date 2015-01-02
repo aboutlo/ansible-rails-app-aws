@@ -2,3 +2,4 @@ roles/*
 # exclude custom modules
 !roles/base
 !roles/app
+!roles/deployer
