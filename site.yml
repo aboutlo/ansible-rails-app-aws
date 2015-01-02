@@ -14,7 +14,9 @@
     - nginx_sites: []
       role: nginx
     - postgresql
-    - deployer
+    - role: deployer
+      deploy_user: jenkins
+      ssh_key_file: '~/.ssh/jenkins-id-rsa.pub'
     - rbenv:
         env: user
         ruby_version: "2.1.4"
