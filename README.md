@@ -3,14 +3,15 @@
 Build a single box with Rails 4.1.6, Nginx, Unicorn and PostgreSQL using Ansible (1.8).
 You can deploy multiple rails apps on the same box.
 
-Moreover this project create different stages:
-- development (vagrant)
-- testing (ec2)
-- staging (ec2)
-- production (ec2)
+Moreover this project can create different stages:
+
+- development on Vagrant
+- testing on EC2)
+- staging on EC2 *( Creation of vars/staging-env.yml using testing as model is required )*
+- production on EC2 *( Creation of vars/production-env.yml using testing as model is required )*
 
 ## Requirments
-- Ansible > 1.8 (currently it means install it from source <http://docs.ansible.com/intro_installation.html#running-from-source>)
+- Ansible > 1.8 `brew install ansible`
 - Vagrant <https://www.vagrantup.com> `brew install vagrant`
 - VirtualBox <https://www.virtualbox.org> `brew install virtualbox`
 - SSH private and public key generated <https://help.github.com/articles/generating-ssh-keys/>
