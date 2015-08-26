@@ -21,7 +21,7 @@ Moreover this project can create different stages:
 
 Install all required Ansible roles using `Ansiblefile.yml` as a sort of Gemfile
 
-    $ ansible-galaxy install -r Ansibilefile.yml
+    $ ansible-galaxy install -r requirements.yml
 
 ## Private keys
 
